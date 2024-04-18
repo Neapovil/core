@@ -1,11 +1,6 @@
-name: CHANGE
-main: com.github.neapovil.change.Change
+name: Core
+main: com.github.neapovil.core.Core
 version: 1.0.0
 api-version: 1.19
 author: Neapovil
-website: https://github.com/Neapovil/CHANGE
-depend:
-  - CommandAPI
-permissions:
-  CHANGE.command:
-    default: op
+website: https://github.com/Neapovil/core
