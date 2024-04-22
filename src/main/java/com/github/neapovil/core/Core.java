@@ -23,7 +23,7 @@ public final class Core extends JavaPlugin
         return instance;
     }
 
-    public CompletableFuture<String> loadFile(JavaPlugin plugin, Path path)
+    public CompletableFuture<String> loadResource(JavaPlugin plugin, Path path)
     {
         return CompletableFuture.supplyAsync(() -> {
             plugin.saveResource(path.getFileName().toString(), false);
@@ -39,7 +39,7 @@ public final class Core extends JavaPlugin
         });
     }
 
-    public CompletableFuture<Void> saveFile(Path path, String string)
+    public CompletableFuture<Void> saveResource(Path path, String string)
     {
         return CompletableFuture.runAsync(() -> {
             try
