@@ -34,6 +34,8 @@ public final class Core extends JavaPlugin
             }
             catch (IOException e)
             {
+                this.getLogger().severe("Unable to load file: " + path);
+                this.getLogger().severe("Exception: " + e.getMessage());
                 throw new CompletionException(e);
             }
         });
@@ -48,6 +50,8 @@ public final class Core extends JavaPlugin
             }
             catch (IOException e)
             {
+                this.getLogger().severe("Unable to save file: " + path);
+                this.getLogger().severe("Exception: " + e.getMessage());
                 throw new CompletionException(e);
             }
         });
