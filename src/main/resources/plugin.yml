@@ -5,3 +5,6 @@ description: Utility library
 api-version: 1.19
 author: Neapovil
 website: https://github.com/Neapovil/core
+permissions:
+  core.broadcast:
+    default: op

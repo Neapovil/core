@@ -8,6 +8,10 @@ import java.util.concurrent.CompletionException;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.Style;
+
 public final class Core extends JavaPlugin
 {
     private static Core instance;
@@ -30,12 +34,17 @@ public final class Core extends JavaPlugin
             try
             {
                 final String string = Files.readString(path);
+                this.getServer().broadcast(Component.text("File (%s) loaded".formatted(path)));
                 return string;
             }
             catch (IOException e)
             {
-                this.getLogger().severe("Unable to load file: " + path);
-                this.getLogger().severe("Exception: " + e.getMessage());
+                final String message = "Unable to load file: " + path;
+                final String message1 = "Exception: " + e.getMessage();
+                this.getLogger().severe(message);
+                this.getLogger().severe(message1);
+                this.getServer().broadcast(Component.text(message, Style.empty().color(NamedTextColor.RED)), "core.broadcast");
+                this.getServer().broadcast(Component.text(message1, Style.empty().color(NamedTextColor.RED)));
                 throw new CompletionException(e);
             }
         });
@@ -47,11 +56,16 @@ public final class Core extends JavaPlugin
             try
             {
                 Files.write(path, string.getBytes());
+                this.getServer().broadcast(Component.text("File (%s) changes saved".formatted(path)));
             }
             catch (IOException e)
             {
-                this.getLogger().severe("Unable to save file: " + path);
-                this.getLogger().severe("Exception: " + e.getMessage());
+                final String message = "Unable to save changes for file: " + path;
+                final String message1 = "Exception: " + e.getMessage();
+                this.getLogger().severe(message);
+                this.getLogger().severe(message1);
+                this.getServer().broadcast(Component.text(message, Style.empty().color(NamedTextColor.RED)), "core.broadcast");
+                this.getServer().broadcast(Component.text(message1, Style.empty().color(NamedTextColor.RED)));
                 throw new CompletionException(e);
             }
         });
